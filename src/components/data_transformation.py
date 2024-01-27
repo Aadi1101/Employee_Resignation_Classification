@@ -18,6 +18,9 @@ class DataTransformation():
             numerical_column_name = ['JoiningYear','PaymentTier','Age','ExperienceInCurrentDomain','LeaveOrNot']
 
             logging.info("Applying the encoding object on training and testing dataframe")
+            train_df['Education'] = train_df['Education'].replace('PHD','Masters')
+            test_df['Education'] = test_df['Education'].replace('PHD','Masters')
+
             train_df['Education'] = train_df['Education'].replace({'Bachelors':1,'Masters':2})
             test_df['Education'] = test_df['Education'].replace({'Bachelors':1,'Masters':2})
 

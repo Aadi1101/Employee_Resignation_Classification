@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
 
 @dataclass
 class DataIngestionConfig():
@@ -45,4 +46,7 @@ if __name__ == '__main__':
     obj = DataIngestion()
     train_set,test_set = obj.initiate_data_ingestion()
     transform_obj = DataTransformation()
-    transform_obj.initiate_data_transformation(trainset=train_set,testset=test_set)
+    train_arr,test_arr = transform_obj.initiate_data_transformation(trainset=train_set,testset=test_set)
+    model_trainer_obj = ModelTrainer()
+    acc,best_model_name = model_trainer_obj.initiate_model_trainer(train_array=train_arr,test_array=test_arr)
+    print(f"Best Model for the data is {best_model_name} with accuracy {acc}")
